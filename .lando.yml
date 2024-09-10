@@ -1,0 +1,20 @@
+name: my-php-app
+recipe: lamp
+config:
+  php: '8.2'  # Specify PHP version
+  webroot: .
+  via: apache
+services:
+  appserver:
+    type: php:8.2
+  database:
+    type: mysql:8.0  # Add MySQL service
+    portforward: true
+    creds:
+      user: root
+      password: 
+      database: my_php_database
+  phpmyadmin:
+    type: phpmyadmin
+    hosts:
+      - database
